@@ -33,10 +33,6 @@ from packages.graph_utils import *
 from packages.solve_LP import solve_LP, compute_sim, compute_sim_with_t
 from packages.xai import *
 
-nltk.download('stopwords')
-nltk.download('punkt')
-nltk.download('wordnet')
-
 app = DashProxy(  # dash.Dash(
     __name__,
     external_stylesheets=[
@@ -259,7 +255,7 @@ app.layout = html.Div([
                 type='hidden'
             )
         ]),
-    dbc.Row([
+    dbc.Row(style={'display': 'flex'}, children=[
         html.Div(className='eight columns', style={"position": "relative"}, children=[
             cyto.Cytoscape(
                 id='cytoscape',
@@ -1498,4 +1494,4 @@ def report_generation(msr, hgl, asl, execution_id, query, elements):
 
 
 if __name__ == "__main__":
-    app.run(port=8050)
+    app.run(port=8050, debug=True)
